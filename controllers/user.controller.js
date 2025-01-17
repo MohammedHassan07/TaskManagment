@@ -1,3 +1,6 @@
+const userModel = require('../models/user.model')
+const { generate_password, compare_password } = require('../utils/hash')
+const { generate_token } = require('../utils/token')
 // create hospital profile --> success
 async function createUser(req, res) {
 
@@ -7,18 +10,16 @@ async function createUser(req, res) {
             email, password
         } = req.body
 
-        // console.log(req.file)
-
         // console.log('create-profile -->', req.body)
 
         // hash password
         const hashPass = await generate_password(password)
 
-        const hospital_data = new hospitalModel({
+        const user = new userModel({
             email, password: hashPass
         })
 
-        const data = await hospital_data.save()
+        const data = await user.save()
         res.status(201).json({
             "status": 201,
             "message": "User registered successfully.",
@@ -48,7 +49,7 @@ async function userLogin(req, res) {
 
         // console.log('hospital-logIn --> ', req.body)
 
-        const data = await hospitalModel.findOne({ email })
+        const data = await userModel.findOne({ email })
         if (!data) {
 
             return res.status(404).json({

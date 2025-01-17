@@ -1,0 +1,50 @@
+// client 
+1- Empty data : {
+  "status": 400,
+  "error": "Bad Request",
+  "message": "Required values are empty."
+}
+
+2- dupicate user: {
+  "status": 409,
+  "error": "Conflict",
+  "message": "A user with the provided details already exists."
+}
+
+3 - {
+  "status": 401,
+  "error": "Unauthorized",
+  "message": "Invalid credentials. Please check your username and password and try again."
+}
+
+4- {
+    "status": 404,
+    "error": "Not Found",
+    "message": "The requested data was not found."
+}
+
+// server
+1- server error: {
+  "status": 500,
+  "error": "Internal Server Error",
+  "message": "An error occurred while attempting to save the data. Please try again later."
+}
+
+2- login successfull {
+  "status": 200,
+  "message": "Login successful.",
+  "data": {
+    "userId": "12345",
+    "username": "existinguser",
+    "token": "jwt-token-or-session-id"
+  }
+}
+
+3- registered :{
+  "status": 201,
+  "message": "User registered successfully.",
+  "data": {
+    "userId": "12345",
+    "username": "newuser"
+  }
+}
