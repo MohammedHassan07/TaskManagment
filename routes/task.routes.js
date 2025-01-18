@@ -1,18 +1,17 @@
 const express = require('express')
-const isEmpty = require('../middleware/isEmpty')
+// const isEmpty = require('../middleware/isEmpty')
 const { verify_jwt_token } = require('../middleware/verifyToken')
 const { addTask, updateTaskStatus, deleteTask, getTask } = require('../controllers/task.controller')
 
 const taskRoute = express.Router()
 
-taskRoute.use(verify_jwt_token)
 
-taskRoute.get('/tasks', getTask)
+taskRoute.get('/tasks', verify_jwt_token, getTask)
 
-taskRoute.post('/tasks', addTask)
+taskRoute.post('/tasks', verify_jwt_token, addTask)
 
-taskRoute.put('/tasks/:id', updateTaskStatus)
+taskRoute.put('/tasks/:id', verify_jwt_token, updateTaskStatus)
 
-taskRoute.delete('/tasks/:id', deleteTask)
+taskRoute.delete('/tasks/:id', verify_jwt_token, deleteTask)
 
 module.exports = taskRoute

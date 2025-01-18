@@ -88,7 +88,7 @@ async function updateTaskStatus(req, res) {
             "message": "The requested data was not found."
         })
 
-        const newTask = taskModel.findByIdAndUpdate({ _id: taskId }, { status: '' })
+        const newTask = await taskModel.findByIdAndUpdate({ _id: taskId }, { status: 'completed' })
 
         return res.status(200).json({
             "status": 200,
@@ -123,14 +123,9 @@ async function deleteTask(req, res) {
 
         return res.status(200).json({
             "status": 200,
-            "message": "Login successful.",
-            "data": {
-                "userId": "12345",
-                "username": "existinguser",
-                "token": "jwt-token-or-session-id"
-            }
+            "message": "Task deleted successfully.",
+            "data": data
         })
-
     } catch (error) {
         console.log(error)
 

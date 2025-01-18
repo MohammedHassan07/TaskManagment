@@ -22,7 +22,7 @@ function verify_jwt_token(req, res, next) {
 
         if (!verified_token) {
 
-            res.status(402).json({
+            res.status(401).json({
                 "status": 401,
                 "error": "Unauthorized",
                 "message": "Invalid credentials. Please check your username and password and try again."

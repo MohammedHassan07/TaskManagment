@@ -2,7 +2,7 @@ module.exports = function isEmpty(req, res, next) {
 
     const data = req.body
     
-    console.log(req.body)
+    console.log('is empty', req.body)
 
     if (!data || Object.keys(data).length === 0) {
         return res.status(400).json({
